@@ -6,280 +6,617 @@
     <title>전문직을 위한 AI 콘텐츠 퍼널 시스템 실전 강의</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            scroll-behavior: smooth;
+        }
+        
         .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4a1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
         .section-reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
+            transform: translateY(60px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .section-reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        @keyframes bounce-slow {
-            0%, 20%, 53%, 80%, 100% {
-                transform: translate3d(0,0,0);
-            }
-            40%, 43% {
-                transform: translate3d(0,-30px,0);
-            }
-            70% {
-                transform: translate3d(0,-15px,0);
-            }
-            90% {
-                transform: translate3d(0,-4px,0);
-            }
+        
+        .card-luxury {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-luxury:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.15);
+            border-color: rgba(212, 175, 55, 0.3);
         }
 
-        @keyframes wiggle {
-            0%, 100% { 
-                transform: rotate(-3deg); 
-            }
-            50% { 
-                transform: rotate(3deg); 
-            }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .animate-bounce-slow {
-            animation: bounce-slow 3s infinite;
+        .backdrop-glass {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
         }
 
-        .animate-wiggle {
-            animation: wiggle 1s ease-in-out infinite;
+        .image-placeholder {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 2px dashed rgba(212, 175, 55, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(212, 175, 55, 0.7);
+            font-weight: 500;
+            min-height: 200px;
+        }
+
+        .scroll-smooth {
+            scroll-padding-top: 2rem;
+        }
+
+        .luxury-border {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .text-gold {
+            color: #d4af37;
+        }
+
+        .bg-gold {
+            background-color: #d4af37;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f4e4a1;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 min-h-screen">
-    <!-- Header Section -->
-    <div class="relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20"></div>
-        <div class="relative max-w-6xl mx-auto px-6 py-16 text-center">
-            <div class="animate-fade-in">
-                <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">
-                    <span class="gradient-text">🧠 고객이 찾아오는</span><br>
-                    <span class="text-gray-800">콘텐츠 퍼널,</span><br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-pink-500">AI로 만들고, 진정성으로 연결합니다</span>
-                </h1>
-                <p class="text-xl text-gray-600 font-medium animate-slide-up">
-                    – 전문직을 위한 AI 콘텐츠 자동화 퍼널 실전 강의
-                </p>
+<body class="bg-black text-white scroll-smooth">
+    
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="image-placeholder h-full w-full">
+                Hero Background Image
             </div>
         </div>
-    </div>
-
-    <div class="max-w-5xl mx-auto px-6 space-y-16 pb-20">
         
-        <!-- 문제 제기 섹션 -->
-        <div class="section-reveal bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-gray-100">
-            <h2 class="text-3xl font-bold mb-8 text-center">
-                <span class="text-red-500">❓</span> 이런 경험, <span class="text-blue-600">낯설지 않으시죠?</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="space-y-4">
-                    <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-2xl card-hover">
-                        <span class="text-red-500 text-xl">•</span>
-                        <span class="text-gray-700">블로그에 글을 써도 고객 문의가 없다</span>
-                    </div>
-                    <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-2xl card-hover">
-                        <span class="text-red-500 text-xl">•</span>
-                        <span class="text-gray-700">콘텐츠는 있는데, 연결되는 고객은 없다</span>
-                    </div>
-                    <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-2xl card-hover">
-                        <span class="text-red-500 text-xl">•</span>
-                        <span class="text-gray-700">마케팅 강의를 많이 들었지만 손에 남는 건 없다</span>
+        <div class="relative z-10 max-w-7xl mx-auto px-8 py-32 text-center">
+            <div class="space-y-8">
+                <h1 class="text-6xl md:text-8xl font-black leading-tight tracking-tight">
+                    <span class="text-white text-shadow">고객이 찾아오는</span><br>
+                    <span class="gradient-text">콘텐츠 퍼널</span><br>
+                    <span class="text-gray-300 text-5xl md:text-6xl">AI로 만들고, 진정성으로 연결합니다</span>
+                </h1>
+                
+                <div class="max-w-3xl mx-auto mt-12">
+                    <p class="text-2xl text-gray-400 font-light leading-relaxed">
+                        전문직을 위한 AI 콘텐츠 자동화 퍼널 실전 강의
+                    </p>
+                </div>
+                
+                <div class="mt-16">
+                    <div class="image-placeholder w-full max-w-4xl mx-auto">
+                        Main Hero Visual / Infographic
                     </div>
                 </div>
-                <div class="space-y-4">
-                    <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-2xl card-hover">
-                        <span class="text-red-500 text-xl">•</span>
-                        <span class="text-gray-700">직원에게 맡겨도 결과물이 마음에 들지 않는다</span>
-                    </div>
-                    <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-2xl card-hover">
-                        <span class="text-red-500 text-xl">•</span>
-                        <span class="text-gray-700">내가 정말 만나고 싶은 고객은 여전히 멀다</span>
-                    </div>
-                    <div class="flex items-start space-x-3 p-4 bg-red-50 rounded-2xl card-hover">
-                        <span class="text-red-500 text-xl">•</span>
-                        <span class="text-gray-700">결국 광고를 해야 하나… 하는 생각만 반복된다</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center p-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl">
-                <p class="text-lg font-semibold text-gray-800">
-                    👉 전문성은 충분한데, <span class="text-blue-600 font-bold">고객 유입 구조가 없는 분</span>들을 위한 강의입니다.
-                </p>
             </div>
         </div>
+    </section>
 
-        <!-- 특별한 이유 섹션 -->
-        <div class="section-reveal">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-6">
-                    <span class="text-yellow-500">📌</span> 이 강의가 <span class="gradient-text">특별한 이유</span>
+    <!-- Pain Points Section -->
+    <section class="py-32 px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h2 class="text-5xl font-bold mb-8">
+                    이런 경험, <span class="gradient-text">낯설지 않으시죠?</span>
                 </h2>
-                <div class="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-3xl p-8 md:p-12 border-l-8 border-yellow-400">
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                        이 강의는 단순히 콘텐츠를 자동으로 만드는 법을 가르치지 않습니다. AI를 활용해 
-                        <span class="font-bold text-orange-600">'고객과의 접점을 더 깊이 이해하고, 더 진정성 있게 연결되는 구조'를 만들 수 있도록 돕는 강의</span>입니다.
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                    전문성은 충분하지만 고객 유입에 어려움을 겪고 계신가요?
+                </p>
+            </div>
+            
+            <div class="section-reveal grid md:grid-cols-2 gap-8 mb-16">
+                <div class="space-y-6">
+                    <div class="bg-gray-900 p-8 rounded-2xl card-luxury luxury-border">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                            <p class="text-gray-300 text-lg leading-relaxed">블로그에 글을 써도 고객 문의가 없다</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl card-luxury luxury-border">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                            <p class="text-gray-300 text-lg leading-relaxed">콘텐츠는 있는데, 연결되는 고객은 없다</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl card-luxury luxury-border">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                            <p class="text-gray-300 text-lg leading-relaxed">마케팅 강의를 많이 들었지만 손에 남는 건 없다</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-gray-900 p-8 rounded-2xl card-luxury luxury-border">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                            <p class="text-gray-300 text-lg leading-relaxed">직원에게 맡겨도 결과물이 마음에 들지 않는다</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl card-luxury luxury-border">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                            <p class="text-gray-300 text-lg leading-relaxed">내가 정말 만나고 싶은 고객은 여전히 멀다</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-8 rounded-2xl card-luxury luxury-border">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                            <p class="text-gray-300 text-lg leading-relaxed">결국 광고를 해야 하나… 하는 생각만 반복된다</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-reveal text-center">
+                <div class="bg-gray-900 p-12 rounded-3xl luxury-border backdrop-glass">
+                    <p class="text-2xl font-medium text-gray-300">
+                        전문성은 충분한데, <span class="text-gold font-semibold">고객 유입 구조가 없는 분</span>들을 위한 강의입니다.
                     </p>
-                    <div class="text-center">
-                        <p class="text-xl font-bold text-gray-800">
-                            <span class="text-blue-600">자동화는 도구입니다.</span> 진짜 중요한 건, <span class="text-purple-600">내가 고객을 얼마나 잘 이해하고 있는지</span>입니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-32 px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h2 class="text-5xl font-bold mb-12">
+                    이 강의가 <span class="gradient-text">특별한 이유</span>
+                </h2>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="image-placeholder mb-12">
+                        Philosophy Illustration
+                    </div>
+                    
+                    <div class="bg-gray-900 p-16 rounded-3xl luxury-border">
+                        <p class="text-2xl text-gray-300 leading-relaxed mb-8">
+                            이 강의는 단순히 콘텐츠를 자동으로 만드는 법을 가르치지 않습니다. 
+                        </p>
+                        <p class="text-2xl text-gray-300 leading-relaxed mb-12">
+                            AI를 활용해 <span class="text-gold font-semibold">'고객과의 접점을 더 깊이 이해하고, 더 진정성 있게 연결되는 구조'</span>를 만들 수 있도록 돕는 강의입니다.
+                        </p>
+                        
+                        <div class="border-t border-gray-700 pt-12">
+                            <p class="text-3xl font-semibold text-center">
+                                <span class="text-gold">"자동화는 도구입니다."</span><br>
+                                <span class="text-gray-400 text-2xl mt-4 inline-block">진짜 중요한 건, 내가 고객을 얼마나 잘 이해하고 있는지입니다.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Benefits Section -->
+    <section class="py-32 px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h2 class="text-5xl font-bold mb-12">
+                    이 강의에서 반드시 얻어가는 <span class="gradient-text">한 가지</span>
+                </h2>
+                
+                <div class="bg-gray-900 p-16 rounded-3xl luxury-border max-w-4xl mx-auto mb-16">
+                    <p class="text-3xl font-bold text-center leading-relaxed">
+                        직원 없이도, 혹은 직원 1~2명만으로도<br>
+                        <span class="gradient-text">고객이 찾아오는 콘텐츠 시스템</span>을 그릴 수 있습니다.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border">
+                        <div class="text-gold text-4xl mb-6">🎯</div>
+                        <h3 class="text-2xl font-bold mb-6 text-gold">명확한 기준 확립</h3>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            내가 하던 마케팅에서 <strong>덜어낼 것과 남길 것의 기준</strong>을 알게 됩니다
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border">
+                        <div class="text-gold text-4xl mb-6">🔗</div>
+                        <h3 class="text-2xl font-bold mb-6 text-gold">도구의 연결성</h3>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            지금까지 배웠던 도구들이 <strong>실제로 어떻게 연결되는지</strong> 이해하게 됩니다
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border">
+                        <div class="text-gold text-4xl mb-6">⚙️</div>
+                        <h3 class="text-2xl font-bold mb-6 text-gold">지속 가능한 구조</h3>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            콘텐츠를 '잘 만드는 법'이 아니라, <strong>'지속 가능하게 운영하는 구조'를 설계</strong>합니다
+                        </p>
+                    </div>
+                    
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border">
+                        <div class="text-gold text-4xl mb-6">🎪</div>
+                        <h3 class="text-2xl font-bold mb-6 text-gold">실행 가능한 시스템</h3>
+                        <p class="text-gray-300 text-lg leading-relaxed">
+                            <strong>직접 해도 되고, 직원에게 맡겨도 될 만큼 명확한 그림</strong>을 갖게 됩니다
                         </p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- 핵심 혜택 섹션 -->
-        <div class="section-reveal">
-            <div class="bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
-                <h2 class="text-3xl font-bold mb-6 text-center">
-                    ✅ 이 강의에서 반드시 얻어가는 <span class="text-yellow-300">한 가지</span>
+    <!-- Three Pillars Section -->
+    <section class="py-32 px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h2 class="text-5xl font-bold mb-12">
+                    전문직 마케팅은 <span class="gradient-text">달라야 합니다</span>
                 </h2>
-                <div class="text-center mb-8">
-                    <p class="text-xl font-bold bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                        직원 없이도, 혹은 직원 1~2명만으로도<br>
-                        <span class="text-yellow-300">고객이 찾아오는 콘텐츠 시스템</span>을 그릴 수 있습니다.
+                
+                <div class="text-center mb-16">
+                    <p class="text-3xl font-light italic text-gray-400">
+                        "기술보다 태도, 자동화보다 진정성입니다."
                     </p>
                 </div>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm text-center">
-                        <h3 class="font-bold text-yellow-300 mb-4">🤝 대행 서비스</h3>
-                        <p class="text-sm">그래도 어렵다면 콘텐츠 대행/퍼널 구축 대행 연결 가능</p>
+            </div>
+
+            <div class="space-y-16">
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gold text-black rounded-full flex items-center justify-center text-2xl font-bold mr-8">1</div>
+                                <h3 class="text-3xl font-bold">마케팅 공부는 그만, 고객에 집중하세요</h3>
+                            </div>
+                            <p class="text-xl text-gray-300 leading-relaxed">
+                                전문직은 이미 고객의 문제를 해결해왔습니다. 그 경험을 콘텐츠로 바꾸는 구조만 갖추면 됩니다. 
+                                이 강의는 <span class="text-gold font-semibold">고객의 문제 해결력을 콘텐츠로 전환하는 실전형 설계도</span>를 제공합니다.
+                            </p>
+                        </div>
+                        <div class="image-placeholder">
+                            Customer Focus Illustration
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="image-placeholder md:order-1">
+                            AI Tools Illustration
+                        </div>
+                        <div class="md:order-2">
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gold text-black rounded-full flex items-center justify-center text-2xl font-bold mr-8">2</div>
+                                <h3 class="text-3xl font-bold">AI는 귀찮음의 해결책이 아니라, 집중을 위한 도구입니다</h3>
+                            </div>
+                            <p class="text-xl text-gray-300 leading-relaxed">
+                                자동화는 내 업무를 줄이기 위해서가 아니라 <span class="text-gold font-semibold">내가 정말 잘하는 일에 집중하기 위해 쓰는 도구</span>입니다. 
+                                이 철학 없이 기술만 배우면, 금방 흔들립니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <div class="flex items-center mb-8">
+                                <div class="w-16 h-16 bg-gold text-black rounded-full flex items-center justify-center text-2xl font-bold mr-8">3</div>
+                                <h3 class="text-3xl font-bold">직원이 없어도, 혹은 1~2명만 있어도 됩니다</h3>
+                            </div>
+                            <p class="text-xl text-gray-300 leading-relaxed">
+                                검색 노출되는 블로그 글, 카드뉴스, 영상, 뉴스레터까지 <span class="text-gold font-semibold">하나의 글이 콘텐츠 퍼널이 되는 구조</span>를 설계합니다. 
+                                <span class="text-gold font-semibold">직접 하든, 시키든 가능한 시스템</span>을 보여드립니다.
+                            </p>
+                        </div>
+                        <div class="image-placeholder">
+                            System Architecture Illustration
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- 강사 메시지 -->
-        <div class="section-reveal">
-            <div class="bg-gradient-to-r from-blue-100 to-purple-100 rounded-3xl p-8 md:p-12 border-l-8 border-blue-500">
-                <h2 class="text-2xl font-bold text-center mb-6">
-                    <span class="text-blue-500">💬</span> 신태순의 한마디
-                </h2>
-                <blockquote class="text-lg text-gray-700 italic text-center leading-relaxed">
-                    "콘텐츠는 누구나 만들 수 있습니다. 하지만 고객이 '나를 믿고 찾아오게 만드는 콘텐츠'는, 
-                    <span class="font-bold text-blue-600">진정성에서 시작됩니다.</span> 
-                    기술보다 태도, 자동화보다 마음. 이 강의는 그 균형을 지켜내는 법을 알려드립니다."
-                </blockquote>
-            </div>
-        </div>
-
-        <!-- 긴급성 어필 -->
-        <div class="section-reveal">
-            <div class="bg-gradient-to-br from-red-400 to-pink-500 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
-                <h2 class="text-3xl font-bold text-center mb-8">
-                    <span class="text-yellow-300 animate-bounce-slow">📌</span> 
-                    <span class="text-yellow-300">지금</span> 시작해야 하는 이유
+    <!-- Curriculum Section -->
+    <section class="py-32 px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h2 class="text-5xl font-bold mb-12">
+                    강의 구성 – <span class="gradient-text">원데이 클래스 (4시간)</span>
                 </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6 text-center">
-                    <div class="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                        <div class="text-4xl mb-4">📈</div>
-                        <h3 class="font-bold mb-2">광고비 상승</h3>
-                        <p class="text-sm">광고는 비싸지고, 신뢰는 콘텐츠에서 시작됩니다</p>
+                <div class="bg-gray-900 p-16 rounded-3xl luxury-border max-w-4xl mx-auto mb-16">
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        실습 중심이 아닙니다. AI를 써본 적 있는 전문직이라면, '이걸 어떻게 시스템으로 만들 수 있는지'를 이해하도록 
+                        <span class="text-gold font-semibold">대화와 설계 중심</span>으로 진행합니다. 필요한 부분만 짧게 체험합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Session 1 -->
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <div class="flex items-center mb-8">
+                                <div class="w-20 h-20 bg-gray-800 text-gold rounded-2xl flex items-center justify-center text-2xl font-bold mr-8 luxury-border">01</div>
+                                <div>
+                                    <h3 class="text-3xl font-bold mb-2">블로그, 텍스트, 쓰레드</h3>
+                                    <p class="text-gold text-lg italic">"전문성과 철학을 담아, 검색에 노출되는 글을 어떻게 만들까?"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300"><strong>재실행 가능한 템플릿 기반의 운영 구조 소개</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-6 rounded-2xl luxury-border">
+                                <p class="text-sm text-gray-400">
+                                    <span class="text-red-400 font-semibold">Before:</span> 콘텐츠 운영이 끊기고 버겁다 
+                                    <span class="text-gold font-semibold ml-8">After:</span> 콘텐츠가 돌아가는 시스템이 생긴다
+                                </p>
+                            </div>
+                        </div>
+                        <div class="image-placeholder">
+                            Automation System Visual
+                        </div>
                     </div>
-                    <div class="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                        <div class="text-4xl mb-4">⏰</div>
-                        <h3 class="font-bold mb-2">선점 효과</h3>
-                        <p class="text-sm">콘텐츠는 쌓인 사람이 승자입니다</p>
-                    </div>
-                    <div class="bg-white/20 rounded-2xl p-6 backdrop-blur-sm">
-                        <div class="text-4xl mb-4">🚀</div>
-                        <h3 class="font-bold mb-2">실행의 힘</h3>
-                        <p class="text-sm">AI는 늦게 배워도 되지만, <strong>먼저 실행한 사람이 유리합니다</strong></p>
+                </div>
+
+                <!-- Session 4 -->
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="image-placeholder md:order-1">
+                            Customer Conversion Funnel Visual
+                        </div>
+                        <div class="md:order-2">
+                            <div class="flex items-center mb-8">
+                                <div class="w-20 h-20 bg-gray-800 text-gold rounded-2xl flex items-center justify-center text-2xl font-bold mr-8 luxury-border">04</div>
+                                <div>
+                                    <h3 class="text-3xl font-bold mb-2">고객 응대 자동화 & 매출 전환 구조</h3>
+                                    <p class="text-gold text-lg italic">"고객 접점은 자동화로, 고객 신뢰는 태도로"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">쉬운 챗봇 세팅(옵션) & 뉴스레터 자동화 흐름</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">고객 DB 쌓고 반복 접촉 가능하게 설계</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">상담 응답 속도 향상 + 직원 실수 줄이기</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300"><strong>대표 없이도 매출이 연결되는 구조 만들기</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-6 rounded-2xl luxury-border">
+                                <p class="text-sm text-gray-400">
+                                    <span class="text-red-400 font-semibold">Before:</span> 응대 누락, 일관성 없음 → 고객 이탈 
+                                    <span class="text-gold font-semibold ml-8">After:</span> 자동화된 응대 흐름 + 진정성 있는 콘텐츠 연결
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- CTA 섹션 -->
-        <div class="section-reveal">
-            <div class="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl text-center">
-                <h2 class="text-4xl font-bold mb-6">
-                    <span class="text-yellow-300 animate-wiggle inline-block">📣</span> 
-                    지금 신청하세요
+    <!-- Execution Philosophy Section -->
+    <section class="py-32 px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center">
+                <h2 class="text-5xl font-bold mb-12">
+                    강의 마무리 – <span class="gradient-text">실행만이 브랜딩입니다</span>
                 </h2>
                 
-                <div class="bg-white/20 rounded-2xl p-8 backdrop-blur-sm mb-8">
-                    <h3 class="text-2xl font-bold mb-4 text-yellow-300">
+                <div class="max-w-4xl mx-auto mb-16">
+                    <div class="image-placeholder mb-12">
+                        Execution & Results Visual
+                    </div>
+                    
+                    <div class="bg-gray-900 p-16 rounded-3xl luxury-border">
+                        <p class="text-2xl text-gray-300 leading-relaxed mb-8">
+                            만들고 싶었던 콘텐츠, 만나고 싶었던 고객, 배웠지만 써먹지 못했던 수많은 도구들.
+                        </p>
+                        <p class="text-2xl text-gray-300 leading-relaxed mb-12">
+                            이 강의를 통해 <span class="text-gold font-semibold">덜어낼 건 덜어내고, 실행할 것만 남깁니다.</span>
+                        </p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-gray-800 p-8 rounded-2xl luxury-border">
+                                <div class="text-gold text-3xl mb-4">🎯</div>
+                                <h3 class="text-xl font-bold text-gold mb-4">4주 실습반</h3>
+                                <p class="text-gray-400">직원이 직접 할 수 있도록 하고 싶다면</p>
+                            </div>
+                            <div class="bg-gray-800 p-8 rounded-2xl luxury-border">
+                                <div class="text-gold text-3xl mb-4">🚀</div>
+                                <h3 class="text-xl font-bold text-gold mb-4">고가 심화 과정</h3>
+                                <p class="text-gray-400">대표가 더 깊이 전략을 세우고 싶다면</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructor Message Section -->
+    <section class="py-32 px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="section-reveal text-center">
+                <h2 class="text-3xl font-bold mb-12 text-gold">신태순의 한마디</h2>
+                
+                <div class="bg-gray-900 p-16 rounded-3xl luxury-border">
+                    <div class="image-placeholder mb-12 max-w-md mx-auto">
+                        Instructor Photo
+                    </div>
+                    
+                    <blockquote class="text-2xl text-gray-300 italic leading-relaxed">
+                        "콘텐츠는 누구나 만들 수 있습니다. 하지만 고객이 '나를 믿고 찾아오게 만드는 콘텐츠'는, 
+                        <span class="text-gold font-semibold not-italic">진정성에서 시작됩니다.</span> 
+                        기술보다 태도, 자동화보다 마음. 이 강의는 그 균형을 지켜내는 법을 알려드립니다."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Urgency Section -->
+    <section class="py-32 px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h2 class="text-5xl font-bold mb-12">
+                    <span class="gradient-text">지금</span> 시작해야 하는 이유
+                </h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border text-center">
+                        <div class="text-gold text-5xl mb-6">📈</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gold">광고비 상승</h3>
+                        <p class="text-gray-300 leading-relaxed">광고는 비싸지고, 신뢰는 콘텐츠에서 시작됩니다</p>
+                    </div>
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border text-center">
+                        <div class="text-gold text-5xl mb-6">⏰</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gold">선점 효과</h3>
+                        <p class="text-gray-300 leading-relaxed">콘텐츠는 쌓인 사람이 승자입니다</p>
+                    </div>
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border text-center">
+                        <div class="text-gold text-5xl mb-6">🚀</div>
+                        <h3 class="text-2xl font-bold mb-4 text-gold">실행의 힘</h3>
+                        <p class="text-gray-300 leading-relaxed">AI는 늦게 배워도 되지만, <strong>먼저 실행한 사람이 유리합니다</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="section-reveal text-center">
+                <h2 class="text-6xl font-bold mb-16">
+                    지금 <span class="gradient-text">신청하세요</span>
+                </h2>
+                
+                <div class="bg-gray-900 p-16 rounded-3xl luxury-border">
+                    <h3 class="text-3xl font-bold mb-6 text-gold">
                         《고객이 찾아오는 콘텐츠 퍼널, AI로 구축하기》
                     </h3>
-                    <p class="text-lg mb-6">– 전문직을 위한 AI + 고객유입 시스템 강의</p>
+                    <p class="text-xl text-gray-400 mb-12">전문직을 위한 AI + 고객유입 시스템 강의</p>
                     
-                    <div class="grid md:grid-cols-3 gap-6 text-left">
-                        <div>
-                            <h4 class="font-bold text-yellow-300 mb-2">📅 일정/장소</h4>
-                            <p class="text-sm">(추가 예정)</p>
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <div class="text-center">
+                            <div class="text-gold text-3xl mb-4">📅</div>
+                            <h4 class="font-bold text-gold mb-2">일정/장소</h4>
+                            <p class="text-gray-400">(추가 예정)</p>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-yellow-300 mb-2">👥 정원</h4>
-                            <p class="text-sm">회차당 최대 10명</p>
+                        <div class="text-center">
+                            <div class="text-gold text-3xl mb-4">👥</div>
+                            <h4 class="font-bold text-gold mb-2">정원</h4>
+                            <p class="text-gray-400">회차당 최대 10명</p>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-yellow-300 mb-2">📞 신청 방법</h4>
-                            <p class="text-sm">(링크 / 카톡 / 이메일 삽입 예정)</p>
+                        <div class="text-center">
+                            <div class="text-gold text-3xl mb-4">📞</div>
+                            <h4 class="font-bold text-gold mb-2">신청 방법</h4>
+                            <p class="text-gray-400">(링크 / 카톡 / 이메일 삽입 예정)</p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="bg-yellow-400 text-gray-800 rounded-2xl p-6 font-bold text-lg">
-                    ⚡ 한정된 인원으로 진행되니 서둘러 신청하세요!
+                    
+                    <div class="bg-gold text-black rounded-2xl p-8 font-bold text-xl">
+                        ⚡ 한정된 인원으로 진행되니 서둘러 신청하세요!
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- 추가 혜택 -->
-        <div class="section-reveal">
-            <div class="bg-gradient-to-r from-green-100 to-blue-100 rounded-3xl p-8 border-l-8 border-green-500">
-                <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">
-                    <span class="text-green-500">🎁</span> 특별 혜택
-                </h3>
+    <!-- Benefits Section -->
+    <section class="py-32 px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-reveal text-center mb-20">
+                <h3 class="text-4xl font-bold mb-12 text-gold">특별 혜택</h3>
                 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
-                        <div class="text-3xl mb-4">📄</div>
-                        <h4 class="font-bold text-gray-800 mb-2">강의안 PDF</h4>
-                        <p class="text-sm text-gray-600">실전 가이드북 제공</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border text-center">
+                        <div class="text-gold text-5xl mb-6">📄</div>
+                        <h4 class="text-2xl font-bold text-gold mb-4">강의안 PDF</h4>
+                        <p class="text-gray-300">실전 가이드북 제공</p>
                     </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
-                        <div class="text-3xl mb-4">💬</div>
-                        <h4 class="font-bold text-gray-800 mb-2">Q&A 커뮤니티</h4>
-                        <p class="text-sm text-gray-600">지속적인 소통 채널</p>
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border text-center">
+                        <div class="text-gold text-5xl mb-6">💬</div>
+                        <h4 class="text-2xl font-bold text-gold mb-4">Q&A 커뮤니티</h4>
+                        <p class="text-gray-300">지속적인 소통 채널</p>
                     </div>
-                    <div class="bg-white rounded-2xl p-6 shadow-lg card-hover text-center">
-                        <div class="text-3xl mb-4">🔄</div>
-                        <h4 class="font-bold text-gray-800 mb-2">후속 미팅</h4>
-                        <p class="text-sm text-gray-600">온라인 후속 세션 (예정)</p>
+                    <div class="bg-gray-900 p-12 rounded-3xl card-luxury luxury-border text-center">
+                        <div class="text-gold text-5xl mb-6">🔄</div>
+                        <h4 class="text-2xl font-bold text-gold mb-4">후속 미팅</h4>
+                        <p class="text-gray-300">온라인 후속 세션 (예정)</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-8 border-t border-gray-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-gray-500 text-lg">
+                © 2025 AI Content Funnel Masterclass. All rights reserved.
+            </p>
+        </div>
+    </footer>
 
     <script>
-        // 스크롤 애니메이션
+        // Smooth scroll reveal animation
         function animateOnScroll() {
             const sections = document.querySelectorAll('.section-reveal');
             
@@ -287,284 +624,145 @@
                 const sectionTop = section.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
                 
-                if (sectionTop < windowHeight * 0.8) {
+                if (sectionTop < windowHeight * 0.75) {
                     section.classList.add('visible');
                 }
             });
         }
 
-        // 페이지 로드 시 및 스크롤 시 애니메이션 실행
-        window.addEventListener('load', animateOnScroll);
-        window.addEventListener('scroll', animateOnScroll);
-
-        // 호버 효과를 위한 인터랙션
-        document.querySelectorAll('.card-hover').forEach(card => {
+        // Enhanced hover effects
+        document.querySelectorAll('.card-luxury').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.transform = 'translateY(-8px)';
+                this.style.borderColor = 'rgba(212, 175, 55, 0.5)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+                this.style.transform = 'translateY(0)';
+                this.style.borderColor = 'rgba(212, 175, 55, 0.2)';
             });
         });
 
-        // 초기 애니메이션 실행
-        animateOnScroll();
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Run initial animation check
+        setTimeout(animateOnScroll, 100);
     </script>
 </body>
-</html>-blur-sm card-hover">
-                        <h3 class="font-bold mb-3 text-yellow-300">🎯 명확한 기준 확립</h3>
-                        <p>내가 하던 마케팅에서 <strong>덜어낼 것과 남길 것의 기준</strong>을 알게 됩니다</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm card-hover">
-                        <h3 class="font-bold mb-3 text-yellow-300">🔗 도구의 연결성</h3>
-                        <p>지금까지 배웠던 도구들이 <strong>실제로 어떻게 연결되는지</strong> 이해하게 됩니다</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm card-hover">
-                        <h3 class="font-bold mb-3 text-yellow-300">⚙️ 지속 가능한 구조</h3>
-                        <p>콘텐츠를 '잘 만드는 법'이 아니라, <strong>'지속 가능하게 운영하는 구조'를 설계</strong>합니다</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm card-hover">
-                        <h3 class="font-bold mb-3 text-yellow-300">🎪 실행 가능한 시스템</h3>
-                        <p><strong>직접 해도 되고, 직원에게 맡겨도 될 만큼 명확한 그림</strong>을 갖게 됩니다</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 전문직 마케팅의 다른 점 -->
-        <div class="section-reveal">
-            <h2 class="text-4xl font-bold text-center mb-12">
-                <span class="text-purple-500">🧲</span> 전문직 마케팅은 <span class="gradient-text">달라야 합니다</span>
-            </h2>
-            
-            <div class="text-center mb-12 p-6 bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl">
-                <p class="text-2xl font-bold text-gray-800 italic">
-                    "기술보다 태도, 자동화보다 진정성입니다."
-                </p>
-            </div>
-
-            <div class="space-y-8">
-                <div class="bg-white rounded-3xl p-8 shadow-xl border-l-8 border-blue-500 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">1</div>
-                        <h3 class="text-2xl font-bold text-gray-800">마케팅 공부는 그만, 고객에 집중하세요</h3>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed">
-                        전문직은 이미 고객의 문제를 해결해왔습니다. 그 경험을 콘텐츠로 바꾸는 구조만 갖추면 됩니다. 
-                        이 강의는 <span class="font-bold text-blue-600">고객의 문제 해결력을 콘텐츠로 전환하는 실전형 설계도</span>를 제공합니다.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-3xl p-8 shadow-xl border-l-8 border-green-500 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">2</div>
-                        <h3 class="text-2xl font-bold text-gray-800">AI는 귀찮음의 해결책이 아니라, 집중을 위한 도구입니다</h3>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed">
-                        자동화는 내 업무를 줄이기 위해서가 아니라 <span class="font-bold text-green-600">내가 정말 잘하는 일에 집중하기 위해 쓰는 도구</span>입니다. 
-                        이 철학 없이 기술만 배우면, 금방 흔들립니다.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-3xl p-8 shadow-xl border-l-8 border-purple-500 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-4">3</div>
-                        <h3 class="text-2xl font-bold text-gray-800">직원이 없어도, 혹은 1~2명만 있어도 됩니다</h3>
-                    </div>
-                    <p class="text-gray-600 leading-relaxed">
-                        검색 노출되는 블로그 글, 카드뉴스, 영상, 뉴스레터까지 <span class="font-bold text-purple-600">하나의 글이 콘텐츠 퍼널이 되는 구조</span>를 설계합니다. 
-                        <span class="font-bold text-purple-600">직접 하든, 시키든 가능한 시스템</span>을 보여드립니다.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 강의 구성 섹션 -->
-        <div class="section-reveal">
-            <h2 class="text-4xl font-bold text-center mb-12">
-                <span class="text-orange-500">🧑‍🏫</span> 강의 구성 – <span class="gradient-text">원데이 클래스 (4시간)</span>
-            </h2>
-            
-            <div class="bg-gradient-to-br from-orange-100 to-pink-100 rounded-3xl p-8 mb-12">
-                <p class="text-lg text-gray-700 text-center leading-relaxed">
-                    실습 중심이 아닙니다. AI를 써본 적 있는 전문직이라면, '이걸 어떻게 시스템으로 만들 수 있는지'를 이해하도록 
-                    <span class="font-bold text-orange-600">대화와 설계 중심</span>으로 진행합니다. 필요한 부분만 짧게 체험합니다.
-                </p>
-            </div>
-
-            <div class="space-y-8">
-                <!-- 1교시 -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover border-l-8 border-blue-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-6">
-                            🕒 1
+</html>-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">AI로 블로그 초안 생성하는 구조 보기</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">내 업종/전문성을 반영한 프롬프트 구조 설계</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">제목·소제목·흐름까지 자동 정리되는 구조</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300"><strong>직원에게 위임 가능한 가이드 제공</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-6 rounded-2xl luxury-border">
+                                <p class="text-sm text-gray-400">
+                                    <span class="text-red-400 font-semibold">Before:</span> 쓰려고 하면 막막하고 귀찮다 
+                                    <span class="text-gold font-semibold ml-8">After:</span> 구조는 AI가 잡고, 나는 핵심만 정리
+                                </p>
+                            </div>
                         </div>
+                        <div class="image-placeholder">
+                            Content Creation Process Visual
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 2 -->
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="image-placeholder md:order-1">
+                            Multi-format Content Visual
+                        </div>
+                        <div class="md:order-2">
+                            <div class="flex items-center mb-8">
+                                <div class="w-20 h-20 bg-gray-800 text-gold rounded-2xl flex items-center justify-center text-2xl font-bold mr-8 luxury-border">02</div>
+                                <div>
+                                    <h3 class="text-3xl font-bold mb-2">콘텐츠 확장: 카드뉴스 & 영상</h3>
+                                    <p class="text-gold text-lg italic">"추가 기획 없이, 글 하나로 영상과 카드뉴스까지 확장"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">카드뉴스 자동 생성 흐름 보기</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">음성/화면 녹화 없이 AI 음성으로 쇼츠/릴스 만드는 법</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">대표의 톤과 진정성을 담은 영상 설계법</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300"><strong>직원에게 시킬 수 있는 구체적 실행 프로세스 제공</strong></p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-6 rounded-2xl luxury-border">
+                                <p class="text-sm text-gray-400">
+                                    <span class="text-red-400 font-semibold">Before:</span> 한 채널만 하기도 벅차다 
+                                    <span class="text-gold font-semibold ml-8">After:</span> 글 하나로 모든 채널용 콘텐츠 확보 가능
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session 3 -->
+                <div class="section-reveal">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <h3 class="text-2xl font-bold text-gray-800">블로그, 텍스트, 쓰레드</h3>
-                            <p class="text-blue-600 font-semibold italic">"전문성과 철학을 담아, 검색에 노출되는 글을 어떻게 만들까?"</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-3">•</span>
-                            AI로 블로그 초안 생성하는 구조 보기
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-3">•</span>
-                            내 업종/전문성을 반영한 프롬프트 구조 설계
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-3">•</span>
-                            제목·소제목·흐름까지 자동 정리되는 구조
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-3">•</span>
-                            <strong>직원에게 위임 가능한 가이드 제공</strong>
-                        </li>
-                    </ul>
-                    <div class="mt-6 p-4 bg-blue-50 rounded-2xl">
-                        <p class="text-sm">
-                            <span class="font-bold text-red-600">Before:</span> 쓰려고 하면 막막하고 귀찮다 
-                            <span class="font-bold text-green-600 ml-4">After:</span> 구조는 AI가 잡고, 나는 핵심만 정리
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 2교시 -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover border-l-8 border-green-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-6">
-                            🕒 2
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800">콘텐츠 확장: 카드뉴스 & 영상</h3>
-                            <p class="text-green-600 font-semibold italic">"추가 기획 없이, 글 하나로 영상과 카드뉴스까지 확장"</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-3">•</span>
-                            카드뉴스 자동 생성 흐름 보기
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-3">•</span>
-                            음성/화면 녹화 없이 AI 음성으로 쇼츠/릴스 만드는 법
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-3">•</span>
-                            대표의 톤과 진정성을 담은 영상 설계법
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-3">•</span>
-                            <strong>직원에게 시킬 수 있는 구체적 실행 프로세스 제공</strong>
-                        </li>
-                    </ul>
-                    <div class="mt-6 p-4 bg-green-50 rounded-2xl">
-                        <p class="text-sm">
-                            <span class="font-bold text-red-600">Before:</span> 한 채널만 하기도 벅차다 
-                            <span class="font-bold text-green-600 ml-4">After:</span> 글 하나로 모든 채널용 콘텐츠 확보 가능
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 3교시 -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover border-l-8 border-purple-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-purple-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-6">
-                            🕒 3
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800">콘텐츠 예약 퍼블리싱</h3>
-                            <p class="text-purple-600 font-semibold italic">"하루 30분 투자로 한 달치 콘텐츠 발행하기"</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start">
-                            <span class="text-purple-500 mr-3">•</span>
-                            1주일/1달치 콘텐츠 예약 발행 시스템
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-purple-500 mr-3">•</span>
-                            운영 캘린더 작성 & 자동 업로드 구조
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-purple-500 mr-3">•</span>
-                            Buffer, Zapier, Notion 등 추천 툴 흐름 설명
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-purple-500 mr-3">•</span>
-                            <strong>재실행 가능한 템플릿 기반의 운영 구조 소개</strong>
-                        </li>
-                    </ul>
-                    <div class="mt-6 p-4 bg-purple-50 rounded-2xl">
-                        <p class="text-sm">
-                            <span class="font-bold text-red-600">Before:</span> 콘텐츠 운영이 끊기고 버겁다 
-                            <span class="font-bold text-green-600 ml-4">After:</span> 콘텐츠가 돌아가는 시스템이 생긴다
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 4교시 -->
-                <div class="bg-white rounded-3xl p-8 shadow-xl card-hover border-l-8 border-orange-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-orange-500 text-white rounded-full flex items-center justify-center text-xl font-bold mr-6">
-                            🕒 4
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-gray-800">고객 응대 자동화 & 매출 전환 구조</h3>
-                            <p class="text-orange-600 font-semibold italic">"고객 접점은 자동화로, 고객 신뢰는 태도로"</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start">
-                            <span class="text-orange-500 mr-3">•</span>
-                            쉬운 챗봇 세팅(옵션) & 뉴스레터 자동화 흐름
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-orange-500 mr-3">•</span>
-                            고객 DB 쌓고 반복 접촉 가능하게 설계
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-orange-500 mr-3">•</span>
-                            상담 응답 속도 향상 + 직원 실수 줄이기
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-orange-500 mr-3">•</span>
-                            <strong>대표 없이도 매출이 연결되는 구조 만들기</strong>
-                        </li>
-                    </ul>
-                    <div class="mt-6 p-4 bg-orange-50 rounded-2xl">
-                        <p class="text-sm">
-                            <span class="font-bold text-red-600">Before:</span> 응대 누락, 일관성 없음 → 고객 이탈 
-                            <span class="font-bold text-green-600 ml-4">After:</span> 자동화된 응대 흐름 + 진정성 있는 콘텐츠 연결
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 실행 브랜딩 섹션 -->
-        <div class="section-reveal">
-            <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
-                <h2 class="text-3xl font-bold text-center mb-8">
-                    <span class="text-yellow-300">🧭</span> 강의 마무리 – <span class="text-yellow-300">실행만이 브랜딩입니다</span>
-                </h2>
-                
-                <div class="text-center mb-8">
-                    <p class="text-lg leading-relaxed mb-6">
-                        만들고 싶었던 콘텐츠, 만나고 싶었던 고객, 배웠지만 써먹지 못했던 수많은 도구들.<br>
-                        이 강의를 통해 <span class="font-bold text-yellow-300">덜어낼 건 덜어내고, 실행할 것만 남깁니다.</span>
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm text-center">
-                        <h3 class="font-bold text-yellow-300 mb-4">🎯 4주 실습반</h3>
-                        <p class="text-sm">직원이 직접 할 수 있도록 하고 싶다면</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop-blur-sm text-center">
-                        <h3 class="font-bold text-yellow-300 mb-4">🚀 고가 심화 과정</h3>
-                        <p class="text-sm">대표가 더 깊이 전략을 세우고 싶다면</p>
-                    </div>
-                    <div class="bg-white/10 rounded-2xl p-6 backdrop
+                            <div class="flex items-center mb-8">
+                                <div class="w-20 h-20 bg-gray-800 text-gold rounded-2xl flex items-center justify-center text-2xl font-bold mr-8 luxury-border">03</div>
+                                <div>
+                                    <h3 class="text-3xl font-bold mb-2">콘텐츠 예약 퍼블리싱</h3>
+                                    <p class="text-gold text-lg italic">"하루 30분 투자로 한 달치 콘텐츠 발행하기"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">1주일/1달치 콘텐츠 예약 발행 시스템</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">운영 캘린더 작성 & 자동 업로드 구조</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h-2 bg-gold rounded-full mt-3 flex-shrink-0"></div>
+                                    <p class="text-gray-300">Buffer, Zapier, Notion 등 추천 툴 흐름 설명</p>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-2 h
