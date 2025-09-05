@@ -95,6 +95,39 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #f4e4a1;
         }
+
+        /* Floating CTA Banner */
+.floating-banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+}
+
+.floating-banner.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.floating-banner:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.4);
+}
+
+/* 모바일에서 크기 조정 */
+@media (max-width: 768px) {
+    .floating-banner {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        right: 15px;
+    }
+}
     </style>
 </head>
 <body class="bg-black text-white scroll-smooth">
@@ -748,6 +781,41 @@
         
         // Run initial animation check
         setTimeout(animateOnScroll, 100);
+
+        // Floating banner functionality
+const floatingBanner = document.getElementById('floatingBanner');
+const ctaSection = document.querySelector('.bg-gold.text-black.rounded-2xl');
+
+// Show banner after scrolling past hero section
+function toggleFloatingBanner() {
+    const heroHeight = window.innerHeight;
+    const scrollY = window.pageYOffset;
+    
+    if (scrollY > heroHeight * 0.8) {
+        floatingBanner.classList.add('visible');
+    } else {
+        floatingBanner.classList.remove('visible');
+    }
+}
+
+// Scroll to CTA section when banner is clicked
+floatingBanner.addEventListener('click', function() {
+    ctaSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+    });
+});
+
+// Add scroll listener for floating banner
+window.addEventListener('scroll', toggleFloatingBanner);
     </script>
+    <!-- Floating CTA Banner -->
+<div id="floatingBanner" class="floating-banner bg-gold text-black rounded-2xl p-4 md:p-6 font-bold text-lg md:text-xl">
+    <div class="flex items-center justify-center space-x-2">
+        <span>⚡</span>
+        <span>지금 신청하기</span>
+        <span class="hidden md:inline">- 한정된 인원</span>
+    </div>
+</div>
 </body>
 </html>
